@@ -207,21 +207,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yg-s7-jFN">
-                                <rect key="frame" x="100" y="560" width="175" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83321231600000001" green="0.3377725184" blue="0.065801285210000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Upload a photo">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwD-M9-2DH">
                                 <rect key="frame" x="52" y="140" width="57" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -264,19 +249,37 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="uploadImage" translatesAutoresizingMaskIntoConstraints="NO" id="7Ob-Kp-4yu">
+                                <rect key="frame" x="81" y="557" width="213" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gr-Be-PNh">
+                                <rect key="frame" x="81" y="557" width="213" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="UploadPhoto:" destination="Kwj-Un-pbQ" eventType="touchUpInside" id="FpI-l6-BaN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.91815483570098877" green="0.78275841474533081" blue="0.53596538305282593" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="kDs-Uv-C5w"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="hIh-VN-oyN" appends="YES" id="rY9-0B-Hth"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="ageText" destination="mc1-me-k04" id="zRY-Up-sZB"/>
                         <outlet property="citytext" destination="Hec-SW-Niq" id="h4J-nc-S9Z"/>
                         <outlet property="descriptionText" destination="7Dl-pi-NIK" id="WfD-Mf-vi5"/>
+                        <outlet property="image" destination="7Ob-Kp-4yu" id="FjV-Md-4K2"/>
                         <outlet property="nameText" destination="1hv-BL-3tL" id="Ihd-D7-s4W"/>
                         <outlet property="phoneText" destination="BdN-B6-8uS" id="gvI-Kn-NuV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSr-KU-l6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hIh-VN-oyN"/>
             </objects>
             <point key="canvasLocation" x="-551.20000000000005" y="796.55172413793105"/>
         </scene>
@@ -665,6 +668,9 @@
             <point key="canvasLocation" x="-2287.1999999999998" y="1623.2383808095954"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="uploadImage" width="776" height="590"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="u4c-wD-HSi"/>
     </inferredMetricsTieBreakers>
