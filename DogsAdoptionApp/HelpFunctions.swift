@@ -8,8 +8,22 @@
 
 import Foundation
 import UIKit
+import SVProgressHUD
 
 class HelpFunctions{
+    
+    // show spinner
+    static func showSpinner(status:String){
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        SVProgressHUD.show(withStatus: status)
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    
+    // hide spinner
+    static func hideSpinner(){
+        SVProgressHUD.dismiss()
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
     
     // displays alert message
     static func displayAlertmessage(message : String, controller: UIViewController){
@@ -28,14 +42,3 @@ class HelpFunctions{
     }
 }
 
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}

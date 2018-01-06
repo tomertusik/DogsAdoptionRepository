@@ -21,7 +21,6 @@ extension UIImageView{
             self.image = cachedImage
             return
         }
-        
         // otherwise make a new download for the image
         let url = URL(string:urlString)
         URLSession.shared.dataTask(with: url!, completionHandler: {(data,response,error) in
@@ -35,5 +34,19 @@ extension UIImageView{
                 }
             }
         }).resume()
+        HelpFunctions.hideSpinner()
     }    
+}
+
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

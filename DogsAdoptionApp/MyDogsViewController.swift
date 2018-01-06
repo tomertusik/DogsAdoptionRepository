@@ -42,6 +42,9 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
                 }
                 self.dogsTableView.reloadData()
             }
+            else{
+                HelpFunctions.displayAlertmessage(message: "There are no dogs to display\nPress the + button to add", controller: self)
+            }
         })
     }
     

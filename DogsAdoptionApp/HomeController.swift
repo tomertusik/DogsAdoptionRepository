@@ -15,10 +15,13 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
     var dogs : Array<Dog> = Array()
     var selectedIndex = Int()
     var isLoggedIn:User?
-
+    var spinner:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
+        
+        HelpFunctions.showSpinner(status: "Loading dogs")
         
         self.navigationItem.setHidesBackButton(true, animated: false)
         
