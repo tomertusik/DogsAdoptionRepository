@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		382F8B6630FBFD16B6B09895 /* Pods_DogsAdoptionAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5775515FC281F700EF18207A /* Pods_DogsAdoptionAppUITests.framework */; };
 		7CED3EE425B4DE31566AB058 /* Pods_DogsAdoptionApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E87BEBBE9998C2D4811B54 /* Pods_DogsAdoptionApp.framework */; };
+		840E39AA200130CD00CDE8E6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840E39A9200130CD00CDE8E6 /* Extensions.swift */; };
 		842338671FE5385A003B408F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842338661FE5385A003B408F /* AppDelegate.swift */; };
 		842338691FE5385A003B408F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842338681FE5385A003B408F /* HomeController.swift */; };
 		8423386C1FE5385A003B408F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8423386A1FE5385A003B408F /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		181106AED05385A5980B69D9 /* Pods-DogsAdoptionAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogsAdoptionAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogsAdoptionAppTests/Pods-DogsAdoptionAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5775515FC281F700EF18207A /* Pods_DogsAdoptionAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DogsAdoptionAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E57ED5CE425B2FFB637BFE /* Pods-DogsAdoptionApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogsAdoptionApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogsAdoptionApp/Pods-DogsAdoptionApp.debug.xcconfig"; sourceTree = "<group>"; };
+		840E39A9200130CD00CDE8E6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		842338631FE5385A003B408F /* DogsAdoptionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogsAdoptionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		842338661FE5385A003B408F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		842338681FE5385A003B408F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				842338721FE5385A003B408F /* Info.plist */,
 				84B7B31D1FEE8456002C0C4C /* MyDogsViewController.swift */,
 				84B7B31F1FEEA6B8002C0C4C /* AddDogViewController.swift */,
+				840E39A9200130CD00CDE8E6 /* Extensions.swift */,
 			);
 			path = DogsAdoptionApp;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				849F1C971FED3EB400319DEC /* RegisterViewController.swift in Sources */,
 				84B7B31E1FEE8456002C0C4C /* MyDogsViewController.swift in Sources */,
 				84FBFB801FE56931007E926B /* ExpandViewController.swift in Sources */,
+				840E39AA200130CD00CDE8E6 /* Extensions.swift in Sources */,
 				842338671FE5385A003B408F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

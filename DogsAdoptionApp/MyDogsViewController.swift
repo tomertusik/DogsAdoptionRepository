@@ -67,17 +67,7 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.dogName.text = dogs[indexPath.row].name
         cell.dogAge.text = dogs[indexPath.row].age
         cell.dogCity.text = dogs[indexPath.row].city
-        
-        let url = URL(string: dogs[indexPath.row].imageURL!)
-        URLSession.shared.dataTask(with: url!, completionHandler: {(data,response,error) in
-            if error != nil{
-                HelpFunctions.displayAlertmessage(message: "Error loading image", controller: self)
-            }
-            DispatchQueue.main.async{
-                cell.dogImage.image = UIImage(data:data!)
-            }
-        }).resume()
-        
+        cell.dogImage.loadImageUsingCacheWithURL(urlString: dogs[indexPath.row].imageURL!, controller: self)
         return cell;
     }
     

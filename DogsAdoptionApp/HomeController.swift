@@ -11,6 +11,7 @@ import Firebase
 
 class HomeController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var dogsTableView: UITableView!
     var dogs : Array<Dog> = Array()
     var selectedIndex = Int()
     var isLoggedIn:User?
@@ -23,9 +24,33 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Dogs", style: .done, target: self, action: #selector(tapMyDogsButton))
         
-//        dogs.append(Dog(name: "Fang", age: "3", city: "Haifa", imageName: "Fang", description: "Very sweet dog", phoneForContact: "0508341931"))
-//        dogs.append(Dog(name: "Rexi", age: "6", city: "Tel-Aviv", imageName: "Rexi", description: "Very sweet dog", phoneForContact: "0508341931"))
-//        dogs.append(Dog(name: "Lola", age: "2", city: "Eilat", imageName: "Lola", description: "Very sweet dog asasfdsfhdfsbgjkdfghkdjsfghkjdfsgahf glshgakjfghls fghakghldksf hgakdjfhglksfhgajl hglskhjdlf ghlkjhd lfhgldkhjadlfhgklsh jadflghsgklhjsl alsdkhfglakgalsdhgl kahgladslghaldgk", phoneForContact: "0508341931"))
+        let dataBaseRef = Database.database().reference()
+        
+        dataBaseRef.child("Users").observe(.value, with: {(snapshot) in
+            if snapshot.childrenCount > 0{
+                self.dogs.removeAll()
+                for user in snapshot.children.allObjects as! [DataSnapshot]{
+                    if user.childrenCount > 0{
+                        for dogs in user.children.allObjects as! [DataSnapshot]{
+                            for dog in dogs.children.allObjects as! [DataSnapshot]{
+                                let dogObject = dog.value as? [String:String]
+                                let name = dogObject?["name"]
+                                let age = dogObject?["age"]
+                                let city = dogObject?["city"]
+                                let phone = dogObject?["phone"]
+                                let description = dogObject?["description"]
+                                
+                                if let imageURL = dogObject?["imageURL"]{
+                                    let dog = Dog(name: name!, age: age!, city: city!, imageURL: imageURL, description: description!, phoneForContact: phone!)
+                                    self.dogs.append(dog)
+                                }
+                            }
+                        }
+                    }
+                }
+                self.dogsTableView.reloadData()
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,10 +93,10 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DogCellTableViewCell
-        //cell.dogImage.image = UIImage(named:dogs[indexPath.row].imageName!)
         cell.dogName.text = dogs[indexPath.row].name
         cell.dogAge.text = dogs[indexPath.row].age
         cell.dogCity.text = dogs[indexPath.row].city
+        cell.dogImage.loadImageUsingCacheWithURL(urlString: dogs[indexPath.row].imageURL!, controller: self)
         return cell;
     }
     
