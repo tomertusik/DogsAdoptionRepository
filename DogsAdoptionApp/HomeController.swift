@@ -23,9 +23,9 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Dogs", style: .done, target: self, action: #selector(tapMyDogsButton))
         
-        dogs.append(Dog(name: "Fang", age: "3", city: "Haifa", imageName: "Fang", description: "Very sweet dog", phoneForContact: "0508341931"))
-        dogs.append(Dog(name: "Rexi", age: "6", city: "Tel-Aviv", imageName: "Rexi", description: "Very sweet dog", phoneForContact: "0508341931"))
-        dogs.append(Dog(name: "Lola", age: "2", city: "Eilat", imageName: "Lola", description: "Very sweet dog asasfdsfhdfsbgjkdfghkdjsfghkjdfsgahf glshgakjfghls fghakghldksf hgakdjfhglksfhgajl hglskhjdlf ghlkjhd lfhgldkhjadlfhgklsh jadflghsgklhjsl alsdkhfglakgalsdhgl kahgladslghaldgk", phoneForContact: "0508341931"))
+//        dogs.append(Dog(name: "Fang", age: "3", city: "Haifa", imageName: "Fang", description: "Very sweet dog", phoneForContact: "0508341931"))
+//        dogs.append(Dog(name: "Rexi", age: "6", city: "Tel-Aviv", imageName: "Rexi", description: "Very sweet dog", phoneForContact: "0508341931"))
+//        dogs.append(Dog(name: "Lola", age: "2", city: "Eilat", imageName: "Lola", description: "Very sweet dog asasfdsfhdfsbgjkdfghkdjsfghkjdfsgahf glshgakjfghls fghakghldksf hgakdjfhglksfhgajl hglskhjdlf ghlkjhd lfhgldkhjadlfhgklsh jadflghsgklhjsl alsdkhfglakgalsdhgl kahgladslghaldgk", phoneForContact: "0508341931"))
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,7 +68,7 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DogCellTableViewCell
-        cell.dogImage.image = UIImage(named:dogs[indexPath.row].imageName!)
+        //cell.dogImage.image = UIImage(named:dogs[indexPath.row].imageName!)
         cell.dogName.text = dogs[indexPath.row].name
         cell.dogAge.text = dogs[indexPath.row].age
         cell.dogCity.text = dogs[indexPath.row].city

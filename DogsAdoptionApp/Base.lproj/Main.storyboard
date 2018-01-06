@@ -32,13 +32,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UFg-F1-E8z">
-                                                    <rect key="frame" x="21" y="8" width="179.5" height="160"/>
+                                                    <rect key="frame" x="21" y="8" width="178.5" height="159"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="UFg-F1-E8z" secondAttribute="height" multiplier="62:55" id="NcX-rK-MH5"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBJ-F2-zot">
-                                                    <rect key="frame" x="208.5" y="17" width="158.5" height="57.5"/>
+                                                    <rect key="frame" x="207.5" y="17" width="159.5" height="57.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="sBJ-F2-zot" secondAttribute="height" multiplier="152:55" id="cpI-gZ-Trw"/>
                                                     </constraints>
@@ -47,7 +47,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Z9-fy-GcV">
-                                                    <rect key="frame" x="208.5" y="82.5" width="111" height="24"/>
+                                                    <rect key="frame" x="207.5" y="82.5" width="159.5" height="34.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="1Z9-fy-GcV" secondAttribute="height" multiplier="152:33" id="dna-fj-o7O"/>
                                                     </constraints>
@@ -56,7 +56,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4g-AX-NbZ">
-                                                    <rect key="frame" x="208.5" y="114.5" width="158.5" height="35.5"/>
+                                                    <rect key="frame" x="207.5" y="125" width="107.5" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="S4g-AX-NbZ" secondAttribute="height" multiplier="76:17" id="EEa-8h-MPT"/>
                                                     </constraints>
@@ -123,12 +123,98 @@
                     <view key="view" contentMode="scaleToFill" id="zx6-X5-obF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="94o-bo-afR">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.9181548357" green="0.78275841469999996" blue="0.53596538309999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="180" id="Vwy-y4-Tw9" customClass="DogCellTableViewCell" customModule="DogsAdoptionApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="180"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vwy-y4-Tw9" id="Hy2-ro-6yd">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="179.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nCA-ZW-8eH">
+                                                    <rect key="frame" x="21" y="8" width="179.5" height="160"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="nCA-ZW-8eH" secondAttribute="height" multiplier="62:55" id="aHw-XB-g7X"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVm-ar-7wf">
+                                                    <rect key="frame" x="208.5" y="17" width="158.5" height="57.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="qVm-ar-7wf" secondAttribute="height" multiplier="152:55" id="afj-of-uQc"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7z-Lb-8NE">
+                                                    <rect key="frame" x="208.5" y="82.5" width="111" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Q7z-Lb-8NE" secondAttribute="height" multiplier="152:33" id="TCy-hR-Fht"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ov-Dl-A0I">
+                                                    <rect key="frame" x="208.5" y="114.5" width="158.5" height="35.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="8ov-Dl-A0I" secondAttribute="height" multiplier="76:17" id="VpS-UF-2T6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8ov-Dl-A0I" firstAttribute="top" secondItem="Q7z-Lb-8NE" secondAttribute="bottom" constant="8" id="5AD-cK-o53"/>
+                                                <constraint firstItem="nCA-ZW-8eH" firstAttribute="top" secondItem="Hy2-ro-6yd" secondAttribute="top" constant="8" id="8l4-uC-ihy"/>
+                                                <constraint firstItem="Q7z-Lb-8NE" firstAttribute="leading" secondItem="nCA-ZW-8eH" secondAttribute="trailing" constant="8" id="Oj2-kz-o8X"/>
+                                                <constraint firstItem="8ov-Dl-A0I" firstAttribute="leading" secondItem="nCA-ZW-8eH" secondAttribute="trailing" constant="8" id="Q5x-bz-b6R"/>
+                                                <constraint firstItem="Q7z-Lb-8NE" firstAttribute="top" secondItem="qVm-ar-7wf" secondAttribute="bottom" constant="8" id="WJK-eo-900"/>
+                                                <constraint firstItem="qVm-ar-7wf" firstAttribute="top" secondItem="Hy2-ro-6yd" secondAttribute="topMargin" constant="9" id="aoc-9G-9fh"/>
+                                                <constraint firstAttribute="bottom" secondItem="nCA-ZW-8eH" secondAttribute="bottom" constant="6.5" id="b2v-SZ-1FC"/>
+                                                <constraint firstItem="nCA-ZW-8eH" firstAttribute="leading" secondItem="Hy2-ro-6yd" secondAttribute="leading" constant="21" id="cT8-I2-lVY"/>
+                                                <constraint firstItem="qVm-ar-7wf" firstAttribute="leading" secondItem="nCA-ZW-8eH" secondAttribute="trailing" constant="8" id="fuU-BW-4ae"/>
+                                                <constraint firstItem="qVm-ar-7wf" firstAttribute="trailing" secondItem="Hy2-ro-6yd" secondAttribute="trailingMargin" id="ghe-We-d2d"/>
+                                                <constraint firstItem="8ov-Dl-A0I" firstAttribute="trailing" secondItem="Hy2-ro-6yd" secondAttribute="trailingMargin" id="iwV-2P-NDK"/>
+                                                <constraint firstItem="Q7z-Lb-8NE" firstAttribute="trailing" secondItem="Hy2-ro-6yd" secondAttribute="trailingMargin" id="reC-iK-nn2"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8ov-Dl-A0I" secondAttribute="bottom" constant="16.5" id="sG8-PB-EGg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.9181548357" green="0.78275841469999996" blue="0.53596538309999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="dogAge" destination="Q7z-Lb-8NE" id="mfR-Nw-kQf"/>
+                                            <outlet property="dogCity" destination="8ov-Dl-A0I" id="2Rg-ib-DGm"/>
+                                            <outlet property="dogImage" destination="nCA-ZW-8eH" id="yem-gA-DdE"/>
+                                            <outlet property="dogName" destination="qVm-ar-7wf" id="YjF-gg-q3w"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="FuI-3j-2ze" id="P2K-d5-1PD"/>
+                                    <outlet property="delegate" destination="FuI-3j-2ze" id="BCV-h8-WHB"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="0.91815483570098877" green="0.78275841474533081" blue="0.53596538305282593" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="94o-bo-afR" firstAttribute="trailing" secondItem="ynw-9Z-2Ji" secondAttribute="trailing" id="7Ch-6n-egv"/>
+                            <constraint firstItem="94o-bo-afR" firstAttribute="top" secondItem="zx6-X5-obF" secondAttribute="topMargin" id="SM9-cJ-6yu"/>
+                            <constraint firstItem="ynw-9Z-2Ji" firstAttribute="bottom" secondItem="94o-bo-afR" secondAttribute="bottom" id="ova-ms-eLY"/>
+                            <constraint firstItem="94o-bo-afR" firstAttribute="leading" secondItem="ynw-9Z-2Ji" secondAttribute="leading" id="qea-TN-eg1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ynw-9Z-2Ji"/>
                     </view>
                     <connections>
+                        <outlet property="dogsTableView" destination="94o-bo-afR" id="Bdr-FK-fRq"/>
                         <segue destination="Kwj-Un-pbQ" kind="show" identifier="addDog" id="g9v-C3-hCj"/>
                         <segue destination="VXD-ys-fxk" kind="unwind" identifier="backToHome" unwindAction="unwindToHomeWithSegue:" id="dCz-Nc-1aD"/>
+                        <segue destination="Lcd-HX-tem" kind="show" identifier="expandDog" id="b39-oR-L4e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="roP-Bg-2Yh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -672,7 +758,8 @@
         <image name="uploadImage" width="776" height="590"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u4c-wD-HSi"/>
+        <segue reference="b39-oR-L4e"/>
+        <segue reference="vc5-bi-lDr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

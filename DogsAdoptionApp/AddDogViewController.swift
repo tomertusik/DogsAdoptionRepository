@@ -87,17 +87,27 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     func saveIntoDatabase(_ name:String, _ age:String, _ city:String, _ phone:String){
         let dataBaseRef = Database.database().reference()
-        //let storageRef = Storage.storage().reference()
+        let imageName = NSUUID().uuidString
+        let storageRef = Storage.storage().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs Images").child(imageName)
         
         var description = self.descriptionText.text
         if description!.isEmpty{
             description = ""
         }
-        let imageName = NSUUID().uuidString
         
-        let dog = Dog(name: name, age: age, city: city, imageName: imageName, description: description!, phoneForContact: phone)
-        
-        dataBaseRef.child("myDogs").childByAutoId().setValue(dog)
+        if let dogImageData = UIImagePNGRepresentation(self.image.image!){
+            storageRef.putData(dogImageData, metadata: nil, completion:
+                {(metadata,error) in
+                    if error != nil {
+                        HelpFunctions.displayAlertmessage(message: "Error saving image", controller: self)
+                        return
+                    }
+                    if let imageURL = metadata?.downloadURL()?.absoluteString{
+                        let dog = ["name":name, "age":age, "city":city, "phone":phone, "description":description,"imageURL":imageURL]
+                        dataBaseRef.child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs").childByAutoId().setValue(dog)
+                    }
+            })
+        }
     }
     
 }

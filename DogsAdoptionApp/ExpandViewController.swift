@@ -21,7 +21,7 @@ class ExpandViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dogImage.image = UIImage(named:dog!.imageName!)
+        //dogImage.image = UIImage(named:dog!.imageName!)
         dogName.text = dog!.name!
         dogAge.text = dogAge.text! + dog!.age!
         dogCity.text = dogCity.text! + dog!.city!

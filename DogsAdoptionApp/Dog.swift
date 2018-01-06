@@ -7,21 +7,22 @@
 //
 
 import Foundation
+import UIKit
 
 class Dog{
     
     var name : String?
     var age : String?
     var city : String?
-    var imageName : String?
     var description :String?
     var phoneForContact : String?
+    var imageURL : String?
     
-    init(name:String, age:String, city:String, imageName:String, description :String, phoneForContact : String) {
+    init(name:String, age:String, city:String, imageURL:String, description :String, phoneForContact : String) {
         self.name = name;
         self.age = age
         self.city = city
-        self.imageName = imageName
+        self.imageURL = imageURL
         self.description = description
         self.phoneForContact = phoneForContact
     }
