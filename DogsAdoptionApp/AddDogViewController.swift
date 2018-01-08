@@ -18,6 +18,7 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     @IBOutlet weak var phoneText: UITextField!
     @IBOutlet weak var descriptionText: UITextView!
     var isUploaded:Bool?
+    var isEditMode:Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +28,11 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         self.citytext.delegate = self
         self.phoneText.delegate = self
         self.descriptionText.delegate = self
-        isUploaded = false
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDoneButton))
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        HelpFunctions.hideSpinner()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,21 +57,24 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             return;
         }
         
-        // check if image is uploaded
+        // check if image is not uploaded
         if(!isUploaded!){
             HelpFunctions.displayAlertmessage(message: "Please upload a photo", controller: self)
             return
         }
+        HelpFunctions.showSpinner(status: "Few more seconds and your dog is reay for adoption...")
         saveIntoDatabase(name!,age!,city!,phone!)
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func UploadPhoto(_ sender: Any) {
+        HelpFunctions.showSpinner(status: "Loading")
         let image = UIImagePickerController()
         image.delegate = self
         image.sourceType = UIImagePickerControllerSourceType.photoLibrary
         image.allowsEditing = false
         self.present(image,animated: true){
+            HelpFunctions.hideSpinner()
         }
     }
     

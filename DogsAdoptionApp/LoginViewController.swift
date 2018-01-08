@@ -31,7 +31,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        HelpFunctions.hideSpinner()
+    }
     
     @IBAction func registerPressed(_ sender: Any) {
         cleanfields()
@@ -39,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        
+        HelpFunctions.showSpinner(status: "Logging in")
         let email = mail.text
         let password = pass.text
         

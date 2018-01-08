@@ -56,6 +56,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return;
         }
         
+        HelpFunctions.showSpinner(status: "Creating user")
+        
         Auth.auth().createUser(withEmail: mail!, password: pass!) { (user, error) in
             if(user == nil && error != nil){
                 HelpFunctions.displayAlertmessage(message: (error?.localizedDescription)!,controller: self)
@@ -73,11 +75,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     // registration done
     func registrationDone(){
+        HelpFunctions.hideSpinner()
         let alert = UIAlertController(title:"Registration Succeeded \nThank you", message:"", preferredStyle:UIAlertControllerStyle.alert)
         let ok = UIAlertAction(title:"Ok",style:UIAlertActionStyle.default){
-            action in self.navigationController?.popViewController(animated: true)
-
-
+            action in
+            HelpFunctions.showSpinner(status: "")
+            self.navigationController?.popViewController(animated: true)
         }
         alert.addAction(ok)
         self.present(alert,animated: true,completion: nil)

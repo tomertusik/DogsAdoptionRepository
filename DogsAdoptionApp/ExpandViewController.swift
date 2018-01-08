@@ -11,6 +11,7 @@ import UIKit
 class ExpandViewController: UIViewController {
     
     var dog: Dog?
+    var isInMyDogs:Bool?
 
     @IBOutlet weak var dogImage: UIImageView!
     @IBOutlet weak var dogName: UILabel!
@@ -21,6 +22,12 @@ class ExpandViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isInMyDogs!{
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(tapEditDogButton))
+        }
+        dogImage.layer.cornerRadius = dogImage.frame.size.width/2
+        dogImage.clipsToBounds = true
         dogImage.loadImageUsingCacheWithURL(urlString: dog!.imageURL!, controller: self)
         dogName.text = dog!.name!
         dogAge.text = dogAge.text! + dog!.age!
@@ -32,5 +39,17 @@ class ExpandViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func tapEditDogButton(){
+        performSegue(withIdentifier: "editMode", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "editMode"){
+            let editController:AddDogViewController = segue.destination as! AddDogViewController
+            editController.isEditMode = true
+            editController.isUploaded = true
+        }
     }
 }

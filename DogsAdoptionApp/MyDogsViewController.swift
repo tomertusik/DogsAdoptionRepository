@@ -17,6 +17,7 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        HelpFunctions.hideSpinner()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapAddDogButton))
 
@@ -70,6 +71,8 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.dogName.text = dogs[indexPath.row].name
         cell.dogAge.text = dogs[indexPath.row].age
         cell.dogCity.text = dogs[indexPath.row].city
+        cell.dogImage.layer.cornerRadius = cell.dogImage.frame.size.width/2
+        cell.dogImage.clipsToBounds = true
         cell.dogImage.loadImageUsingCacheWithURL(urlString: dogs[indexPath.row].imageURL!, controller: self)
         return cell;
     }
@@ -82,7 +85,13 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "expandDog"){
             let expandController:ExpandViewController = segue.destination as! ExpandViewController
+            expandController.isInMyDogs = true
             expandController.dog = dogs[selectedIndex]
+        }
+        else if(segue.identifier == "addDog"){
+            let addController:AddDogViewController = segue.destination as! AddDogViewController
+            addController.isEditMode = false
+            addController.isUploaded = false
         }
     }
 }

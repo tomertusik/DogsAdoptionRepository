@@ -99,6 +99,8 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.dogName.text = dogs[indexPath.row].name
         cell.dogAge.text = dogs[indexPath.row].age
         cell.dogCity.text = dogs[indexPath.row].city
+        cell.dogImage.layer.cornerRadius = cell.dogImage.frame.size.width/2
+        cell.dogImage.clipsToBounds = true
         cell.dogImage.loadImageUsingCacheWithURL(urlString: dogs[indexPath.row].imageURL!, controller: self)
         return cell;
     }
@@ -111,6 +113,7 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "expand"){
             let expandController:ExpandViewController = segue.destination as! ExpandViewController
+            expandController.isInMyDogs = false
             expandController.dog = dogs[selectedIndex]
         }
     }
