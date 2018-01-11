@@ -72,4 +72,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.mail.text = nil
         self.pass.text = nil
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "loginToMyDogs"){
+            let mydogsController:MyDogsViewController = segue.destination as! MyDogsViewController
+            mydogsController.hideSpinner = true
+        }
+    }
 }

@@ -212,7 +212,7 @@
                         <viewLayoutGuide key="safeArea" id="ynw-9Z-2Ji"/>
                     </view>
                     <connections>
-                        <outlet property="dogsTableView" destination="94o-bo-afR" id="Bdr-FK-fRq"/>
+                        <outlet property="dogsTableView" destination="94o-bo-afR" id="t0Y-7d-Hwy"/>
                         <segue destination="Kwj-Un-pbQ" kind="show" identifier="addDog" id="g9v-C3-hCj"/>
                         <segue destination="VXD-ys-fxk" kind="unwind" identifier="backToHome" unwindAction="unwindToHomeWithSegue:" id="dCz-Nc-1aD"/>
                         <segue destination="Lcd-HX-tem" kind="show" identifier="expandDog" id="b39-oR-L4e"/>
@@ -363,9 +363,11 @@
                         <outlet property="image" destination="7Ob-Kp-4yu" id="FjV-Md-4K2"/>
                         <outlet property="nameText" destination="1hv-BL-3tL" id="Ihd-D7-s4W"/>
                         <outlet property="phoneText" destination="BdN-B6-8uS" id="gvI-Kn-NuV"/>
+                        <segue destination="wyX-dR-QJt" kind="unwind" identifier="unwindToMydogs" unwindAction="unwindToMyDogsWithSegue:" id="2hf-1K-d5H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSr-KU-l6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wyX-dR-QJt" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="hIh-VN-oyN"/>
             </objects>
             <point key="canvasLocation" x="-551.20000000000005" y="796.55172413793105"/>
@@ -761,7 +763,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="b39-oR-L4e"/>
-        <segue reference="mmx-xW-PN6"/>
+        <segue reference="g9v-C3-hCj"/>
         <segue reference="vc5-bi-lDr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

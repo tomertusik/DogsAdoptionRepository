@@ -14,10 +14,12 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var dogsTableView: UITableView!
     var dogs = [Dog]()
     var selectedIndex = Int()
+    var hideSpinner:Bool = false
+    
+    @IBAction func unwindToMyDogs(segue: UIStoryboardSegue) {}
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        HelpFunctions.hideSpinner()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapAddDogButton))
 
@@ -35,9 +37,11 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
                     let city = dogObject?["city"]
                     let phone = dogObject?["phone"]
                     let description = dogObject?["description"]
+                    let key = dogObject?["key"]
+                    let imageID = dogObject?["imageID"]
                     
                     if let imageURL = dogObject?["imageURL"]{
-                        let dog = Dog(name: name!, age: age!, city: city!, imageURL: imageURL, description: description!, phoneForContact: phone!)
+                        let dog = Dog(name: name!, age: age!, city: city!, imageURL: imageURL, description: description!, phoneForContact: phone!,key: key!,imageID:imageID!)
                         self.dogs.append(dog)
                     }
                 }
@@ -47,6 +51,12 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
                 HelpFunctions.displayAlertmessage(message: "There are no dogs to display\nPress the + button to add", controller: self)
             }
         })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if(hideSpinner){
+            HelpFunctions.hideSpinner()
+        }
     }
     
     @objc func backToHome() {

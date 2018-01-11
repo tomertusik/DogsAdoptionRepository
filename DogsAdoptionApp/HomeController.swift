@@ -15,7 +15,6 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
     var dogs : Array<Dog> = Array()
     var selectedIndex = Int()
     var isLoggedIn:User?
-    var spinner:UIActivityIndicatorView = UIActivityIndicatorView()
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {}
     
@@ -42,9 +41,11 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
                                 let city = dogObject?["city"]
                                 let phone = dogObject?["phone"]
                                 let description = dogObject?["description"]
+                                let key = dogObject?["key"]
+                                let imageID = dogObject?["imageID"]
                                 
                                 if let imageURL = dogObject?["imageURL"]{
-                                    let dog = Dog(name: name!, age: age!, city: city!, imageURL: imageURL, description: description!, phoneForContact: phone!)
+                                    let dog = Dog(name: name!, age: age!, city: city!, imageURL: imageURL, description: description!, phoneForContact: phone!, key:key!,imageID:imageID!)
                                     self.dogs.append(dog)
                                 }
                             }

@@ -19,9 +19,13 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     @IBOutlet weak var descriptionText: UITextView!
     var isUploaded:Bool?
     var isEditMode:Bool?
+    var isPictureChanged:Bool = false
+    var dog: Dog?
+    var isImagePicker:Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        isImagePicker = false;
         self.hideKeyboardWhenTappedAround()
         self.nameText.delegate = self
         self.ageText.delegate = self
@@ -33,6 +37,14 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     override func viewDidAppear(_ animated: Bool) {
         HelpFunctions.hideSpinner()
+        if isEditMode! && dog != nil && !isImagePicker!{
+            self.nameText.text = dog?.name
+            self.ageText.text = dog?.age
+            self.citytext.text = dog?.city
+            self.phoneText.text = dog?.phoneForContact
+            self.descriptionText.text = dog?.description
+            self.image.loadImageUsingCacheWithURL(urlString: (dog?.imageURL!)!, controller: self)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,6 +56,7 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         return true
     }
     
+    // When done button is pressed
     @objc func tapDoneButton(){
         
         let name = nameText.text
@@ -62,11 +75,20 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             HelpFunctions.displayAlertmessage(message: "Please upload a photo", controller: self)
             return
         }
-        HelpFunctions.showSpinner(status: "Few more seconds and your dog is reay for adoption...")
-        saveIntoDatabase(name!,age!,city!,phone!)
-        navigationController?.popViewController(animated: true)
+        // if user is in edit mode
+        if isEditMode!{
+            updateDataBase(name!,age!,city!,phone!)
+            performSegue(withIdentifier: "unwindToMydogs", sender: self)
+        }
+        // if user is in add mode
+        else{
+            HelpFunctions.showSpinner(status: "Few more seconds and your dog is ready for adoption...")
+            saveIntoDatabase(name!,age!,city!,phone!)
+            navigationController?.popViewController(animated: true)
+        }
     }
     
+    // on photo uplaod press
     @IBAction func UploadPhoto(_ sender: Any) {
         HelpFunctions.showSpinner(status: "Loading")
         let image = UIImagePickerController()
@@ -78,11 +100,14 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         }
     }
     
+    // init the image picker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        isImagePicker = true
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         {
             self.image.image = image
             isUploaded = true
+            isPictureChanged = true
         }
         else{
             // Error message
@@ -91,10 +116,11 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         self.dismiss(animated: true, completion: nil)
     }
     
+    // save the data and image to firebase
     func saveIntoDatabase(_ name:String, _ age:String, _ city:String, _ phone:String){
-        let dataBaseRef = Database.database().reference()
-        let imageName = NSUUID().uuidString
-        let storageRef = Storage.storage().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs Images").child(imageName)
+        let dataBaseRef = Database.database().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs").childByAutoId()
+        let imageID = NSUUID().uuidString
+        let storageRef = Storage.storage().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs Images").child(imageID)
         
         var description = self.descriptionText.text
         if description!.isEmpty{
@@ -109,11 +135,57 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
                         return
                     }
                     if let imageURL = metadata?.downloadURL()?.absoluteString{
-                        let dog = ["name":name, "age":age, "city":city, "phone":phone, "description":description,"imageURL":imageURL]
-                        dataBaseRef.child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs").childByAutoId().setValue(dog)
+                        let key = dataBaseRef.key
+                        let dog = ["name":name, "age":age, "city":city, "phone":phone, "description":description,"imageURL":imageURL, "key":key,"imageID":imageID]
+                        dataBaseRef.setValue(dog)
                     }
             })
         }
+    }
+    
+    // update existing data and image
+    func updateDataBase(_ name:String, _ age:String, _ city:String, _ phone:String){
+        let dogKey = self.dog?.key
+        let imageID = self.dog?.imageID
+        let dataBaseRef = Database.database().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs").child(dogKey!)
+        var description = self.descriptionText.text
+        if description!.isEmpty{
+            description = ""
+        }
+        if isPictureChanged{
+            HelpFunctions.showSpinner(status: "Few more seconds and your dog is ready for adoption...")
+            // change the imageURL and save new picture to storage
+            let storageRef = Storage.storage().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs Images").child(imageID!)
+            // Delete the file
+            storageRef.delete { error in
+                if error != nil {
+                    HelpFunctions.displayAlertmessage(message: "Error", controller: self)
+                    return
+                }
+            }
+            if let dogImageData = UIImagePNGRepresentation(self.image.image!){
+                storageRef.putData(dogImageData, metadata: nil, completion:
+                    {(metadata,error) in
+                        if error != nil {
+                            HelpFunctions.displayAlertmessage(message: "Error saving image", controller: self)
+                            return
+                        }
+                        if let imageURL = metadata?.downloadURL()?.absoluteString{
+                            self.updateData(name, age, city, phone, description!, imageURL, dogKey!, imageID!, dataBaseRef)
+                        }
+                })
+            }
+        }
+        else{
+            let imageURL = self.dog?.imageURL
+            self.updateData(name, age, city, phone, description!, imageURL!, dogKey!, imageID!, dataBaseRef)
+        }
+    }
+    
+    // update data in firebase
+    func updateData(_ name:String, _ age:String, _ city:String, _ phone:String, _ description:String, _ imageURL:String, _ dogKey:String, _ imageID:String, _ dataBaseRef:DatabaseReference){
+        let dog = ["name":name, "age":age, "city":city, "phone":phone, "description":description,"imageURL":imageURL, "key":dogKey,"imageID":imageID]
+        dataBaseRef.updateChildValues(dog as Any as! [AnyHashable : Any])
     }
     
 }
