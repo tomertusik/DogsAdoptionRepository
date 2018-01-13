@@ -21,9 +21,11 @@
 		84B7B31A1FED8E0E002C0C4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B3191FED8E00002C0C4C /* GoogleService-Info.plist */; };
 		84B7B31C1FED952B002C0C4C /* HelpFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B31B1FED952B002C0C4C /* HelpFunctions.swift */; };
 		84B7B31E1FEE8456002C0C4C /* MyDogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B31D1FEE8456002C0C4C /* MyDogsViewController.swift */; };
-		84B7B3201FEEA6B8002C0C4C /* AddDogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B31F1FEEA6B8002C0C4C /* AddDogViewController.swift */; };
+		84B7B3201FEEA6B8002C0C4C /* ManageSingleDogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B31F1FEEA6B8002C0C4C /* ManageSingleDogViewController.swift */; };
 		84C0F4C51FED71CE00D89DF3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C0F4C41FED71CE00D89DF3 /* LoginViewController.swift */; };
 		84CE4ED51FE540FB00779721 /* DogCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE4ED41FE540FB00779721 /* DogCellTableViewCell.swift */; };
+		84FAC3E320091BF400A7E524 /* FireBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FAC3E220091BF400A7E524 /* FireBaseModel.swift */; };
+		84FAC3E520091DCA00A7E524 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FAC3E420091DCA00A7E524 /* Model.swift */; };
 		84FBFB7E1FE55269007E926B /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FBFB7D1FE55269007E926B /* Dog.swift */; };
 		84FBFB801FE56931007E926B /* ExpandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FBFB7F1FE56931007E926B /* ExpandViewController.swift */; };
 		9F228038F78CE63215BC2F8D /* Pods_DogsAdoptionAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F402646E866CE841D8FD7448 /* Pods_DogsAdoptionAppTests.framework */; };
@@ -70,9 +72,11 @@
 		84B7B3191FED8E00002C0C4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84B7B31B1FED952B002C0C4C /* HelpFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFunctions.swift; sourceTree = "<group>"; };
 		84B7B31D1FEE8456002C0C4C /* MyDogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDogsViewController.swift; sourceTree = "<group>"; };
-		84B7B31F1FEEA6B8002C0C4C /* AddDogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDogViewController.swift; sourceTree = "<group>"; };
+		84B7B31F1FEEA6B8002C0C4C /* ManageSingleDogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSingleDogViewController.swift; sourceTree = "<group>"; };
 		84C0F4C41FED71CE00D89DF3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		84CE4ED41FE540FB00779721 /* DogCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCellTableViewCell.swift; sourceTree = "<group>"; };
+		84FAC3E220091BF400A7E524 /* FireBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseModel.swift; sourceTree = "<group>"; };
+		84FAC3E420091DCA00A7E524 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		84FBFB7D1FE55269007E926B /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 		84FBFB7F1FE56931007E926B /* ExpandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandViewController.swift; sourceTree = "<group>"; };
 		97E87BEBBE9998C2D4811B54 /* Pods_DogsAdoptionApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DogsAdoptionApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,9 +148,9 @@
 		842338651FE5385A003B408F /* DogsAdoptionApp */ = {
 			isa = PBXGroup;
 			children = (
+				84FAC3E120091B5E00A7E524 /* Model */,
 				842338661FE5385A003B408F /* AppDelegate.swift */,
 				842338681FE5385A003B408F /* HomeController.swift */,
-				84FBFB7D1FE55269007E926B /* Dog.swift */,
 				8423386A1FE5385A003B408F /* Main.storyboard */,
 				84B7B31B1FED952B002C0C4C /* HelpFunctions.swift */,
 				84C0F4C41FED71CE00D89DF3 /* LoginViewController.swift */,
@@ -158,7 +162,7 @@
 				84B7B3191FED8E00002C0C4C /* GoogleService-Info.plist */,
 				842338721FE5385A003B408F /* Info.plist */,
 				84B7B31D1FEE8456002C0C4C /* MyDogsViewController.swift */,
-				84B7B31F1FEEA6B8002C0C4C /* AddDogViewController.swift */,
+				84B7B31F1FEEA6B8002C0C4C /* ManageSingleDogViewController.swift */,
 				840E39A9200130CD00CDE8E6 /* Extensions.swift */,
 			);
 			path = DogsAdoptionApp;
@@ -180,6 +184,16 @@
 				842338881FE5385A003B408F /* Info.plist */,
 			);
 			path = DogsAdoptionAppUITests;
+			sourceTree = "<group>";
+		};
+		84FAC3E120091B5E00A7E524 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84FBFB7D1FE55269007E926B /* Dog.swift */,
+				84FAC3E220091BF400A7E524 /* FireBaseModel.swift */,
+				84FAC3E420091DCA00A7E524 /* Model.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A55F6D721973BE4EA263800F /* Pods */ = {
@@ -500,11 +514,13 @@
 				84B7B31C1FED952B002C0C4C /* HelpFunctions.swift in Sources */,
 				84C0F4C51FED71CE00D89DF3 /* LoginViewController.swift in Sources */,
 				842338691FE5385A003B408F /* HomeController.swift in Sources */,
-				84B7B3201FEEA6B8002C0C4C /* AddDogViewController.swift in Sources */,
+				84B7B3201FEEA6B8002C0C4C /* ManageSingleDogViewController.swift in Sources */,
 				84CE4ED51FE540FB00779721 /* DogCellTableViewCell.swift in Sources */,
 				84FBFB7E1FE55269007E926B /* Dog.swift in Sources */,
+				84FAC3E520091DCA00A7E524 /* Model.swift in Sources */,
 				849F1C971FED3EB400319DEC /* RegisterViewController.swift in Sources */,
 				84B7B31E1FEE8456002C0C4C /* MyDogsViewController.swift in Sources */,
+				84FAC3E320091BF400A7E524 /* FireBaseModel.swift in Sources */,
 				84FBFB801FE56931007E926B /* ExpandViewController.swift in Sources */,
 				840E39AA200130CD00CDE8E6 /* Extensions.swift in Sources */,
 				842338671FE5385A003B408F /* AppDelegate.swift in Sources */,

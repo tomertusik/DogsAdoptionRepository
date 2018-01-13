@@ -32,13 +32,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UFg-F1-E8z">
-                                                    <rect key="frame" x="21" y="8" width="178.5" height="159"/>
+                                                    <rect key="frame" x="21" y="8" width="180" height="160"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="UFg-F1-E8z" secondAttribute="height" multiplier="62:55" id="NcX-rK-MH5"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBJ-F2-zot">
-                                                    <rect key="frame" x="207.5" y="17" width="159.5" height="57.5"/>
+                                                    <rect key="frame" x="209" y="17" width="158" height="57.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="sBJ-F2-zot" secondAttribute="height" multiplier="152:55" id="cpI-gZ-Trw"/>
                                                     </constraints>
@@ -47,7 +47,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Z9-fy-GcV">
-                                                    <rect key="frame" x="207.5" y="82.5" width="159.5" height="34.5"/>
+                                                    <rect key="frame" x="209" y="82.5" width="110.5" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="1Z9-fy-GcV" secondAttribute="height" multiplier="152:33" id="dna-fj-o7O"/>
                                                     </constraints>
@@ -56,7 +56,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4g-AX-NbZ">
-                                                    <rect key="frame" x="207.5" y="125" width="107.5" height="24"/>
+                                                    <rect key="frame" x="209" y="114.5" width="158" height="35.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="S4g-AX-NbZ" secondAttribute="height" multiplier="76:17" id="EEa-8h-MPT"/>
                                                     </constraints>
@@ -138,13 +138,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nCA-ZW-8eH">
-                                                    <rect key="frame" x="21" y="8" width="178.5" height="159"/>
+                                                    <rect key="frame" x="21" y="8" width="179" height="159"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="nCA-ZW-8eH" secondAttribute="height" multiplier="62:55" id="aHw-XB-g7X"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVm-ar-7wf">
-                                                    <rect key="frame" x="207.5" y="17" width="159.5" height="57.5"/>
+                                                    <rect key="frame" x="208" y="17" width="159" height="57.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="qVm-ar-7wf" secondAttribute="height" multiplier="152:55" id="afj-of-uQc"/>
                                                     </constraints>
@@ -153,7 +153,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7z-Lb-8NE">
-                                                    <rect key="frame" x="207.5" y="82.5" width="159.5" height="34.5"/>
+                                                    <rect key="frame" x="208" y="82.5" width="159" height="34.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Q7z-Lb-8NE" secondAttribute="height" multiplier="152:33" id="TCy-hR-Fht"/>
                                                     </constraints>
@@ -162,7 +162,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ov-Dl-A0I">
-                                                    <rect key="frame" x="207.5" y="125" width="107.5" height="24"/>
+                                                    <rect key="frame" x="208" y="125" width="107" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="8ov-Dl-A0I" secondAttribute="height" multiplier="76:17" id="VpS-UF-2T6"/>
                                                     </constraints>
@@ -223,10 +223,10 @@
             </objects>
             <point key="canvasLocation" x="-1412" y="797"/>
         </scene>
-        <!--Add Dog View Controller-->
+        <!--Manage Single Dog View Controller-->
         <scene sceneID="aMo-Uz-JLF">
             <objects>
-                <viewController id="Kwj-Un-pbQ" customClass="AddDogViewController" customModule="DogsAdoptionApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Kwj-Un-pbQ" customClass="ManageSingleDogViewController" customModule="DogsAdoptionApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uXL-Ew-csH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -476,9 +476,11 @@
                         <outlet property="dogImage" destination="5rv-Rc-rc9" id="yAU-Ox-2dt"/>
                         <outlet property="dogName" destination="onv-Xc-wbH" id="jhr-7T-i8Y"/>
                         <segue destination="Kwj-Un-pbQ" kind="show" identifier="editMode" id="mmx-xW-PN6"/>
+                        <segue destination="BCf-IR-4dr" kind="unwind" identifier="unwindToMyDogs" unwindAction="unwindToMyDogsWithSegue:" id="nlf-m1-3st"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FDn-Gi-4Pu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="BCf-IR-4dr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-550" y="63"/>
         </scene>
@@ -762,8 +764,8 @@
         <image name="uploadImage" width="776" height="590"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="b39-oR-L4e"/>
-        <segue reference="g9v-C3-hCj"/>
+        <segue reference="BmU-ND-fac"/>
+        <segue reference="mmx-xW-PN6"/>
         <segue reference="vc5-bi-lDr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

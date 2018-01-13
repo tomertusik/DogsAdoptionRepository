@@ -26,33 +26,14 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Dogs", style: .done, target: self, action: #selector(tapMyDogsButton))
         
-        let dataBaseRef = Database.database().reference()
-        
-        dataBaseRef.child("Users").observe(.value, with: {(snapshot) in
-            if snapshot.childrenCount > 0{
+        Model.instance.getAllDogs(completionBlock: { (dogs) in
+            if dogs != nil{
                 self.dogs.removeAll()
-                for user in snapshot.children.allObjects as! [DataSnapshot]{
-                    if user.childrenCount > 0{
-                        for dogs in user.children.allObjects as! [DataSnapshot]{
-                            for dog in dogs.children.allObjects as! [DataSnapshot]{
-                                let dogObject = dog.value as? [String:String]
-                                let name = dogObject?["name"]
-                                let age = dogObject?["age"]
-                                let city = dogObject?["city"]
-                                let phone = dogObject?["phone"]
-                                let description = dogObject?["description"]
-                                let key = dogObject?["key"]
-                                let imageID = dogObject?["imageID"]
-                                
-                                if let imageURL = dogObject?["imageURL"]{
-                                    let dog = Dog(name: name!, age: age!, city: city!, imageURL: imageURL, description: description!, phoneForContact: phone!, key:key!,imageID:imageID!)
-                                    self.dogs.append(dog)
-                                }
-                            }
-                        }
-                    }
-                }
+                self.dogs = dogs!
                 self.dogsTableView.reloadData()
+            }
+            else{
+                HelpFunctions.displayAlertmessage(message: "There are no dogs to display\nPress the + button to add", controller: self)
             }
         })
     }

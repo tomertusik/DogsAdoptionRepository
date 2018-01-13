@@ -57,16 +57,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
         
         HelpFunctions.showSpinner(status: "Creating user")
-        
-        Auth.auth().createUser(withEmail: mail!, password: pass!) { (user, error) in
-            if(user == nil && error != nil){
+        Model.instance.register(mail!, pass!, completionBlock: {(error) in
+            if error != nil{
                 HelpFunctions.displayAlertmessage(message: (error?.localizedDescription)!,controller: self)
-                return
             }
             else{
                 self.registrationDone()
             }
-        }
+        })
     }
     
     @IBAction func backToLogin(_ sender: Any) {

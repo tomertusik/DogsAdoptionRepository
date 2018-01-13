@@ -25,26 +25,10 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "All Dogs", style: .done, target: self, action: #selector(self.backToHome))
         
-        let dataBaseRef = Database.database().reference()
-        
-        dataBaseRef.child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs").observe(.value, with: {(snapshot) in
-            if snapshot.childrenCount > 0{
+        Model.instance.getMyDogs(completionBlock: { (dogs) in
+            if dogs != nil{
                 self.dogs.removeAll()
-                for dogs in snapshot.children.allObjects as! [DataSnapshot]{
-                    let dogObject = dogs.value as? [String:String]
-                    let name = dogObject?["name"]
-                    let age = dogObject?["age"]
-                    let city = dogObject?["city"]
-                    let phone = dogObject?["phone"]
-                    let description = dogObject?["description"]
-                    let key = dogObject?["key"]
-                    let imageID = dogObject?["imageID"]
-                    
-                    if let imageURL = dogObject?["imageURL"]{
-                        let dog = Dog(name: name!, age: age!, city: city!, imageURL: imageURL, description: description!, phoneForContact: phone!,key: key!,imageID:imageID!)
-                        self.dogs.append(dog)
-                    }
-                }
+                self.dogs = dogs!
                 self.dogsTableView.reloadData()
             }
             else{
@@ -99,7 +83,7 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
             expandController.dog = dogs[selectedIndex]
         }
         else if(segue.identifier == "addDog"){
-            let addController:AddDogViewController = segue.destination as! AddDogViewController
+            let addController:ManageSingleDogViewController = segue.destination as! ManageSingleDogViewController
             addController.isEditMode = false
             addController.isUploaded = false
         }

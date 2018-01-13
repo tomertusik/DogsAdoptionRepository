@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class ExpandViewController: UIViewController {
     
@@ -45,18 +44,28 @@ class ExpandViewController: UIViewController {
     
     // delete button is pressed
     @objc func tapDeleteButton(){
-        HelpFunctions.showSpinner(status: "Removing your dog...")
-        let dataBaseRef = Database.database().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs").child((dog?.key)!)
-        let storageRef = Storage.storage().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs Images").child((dog?.imageID)!)
-        // Delete the file
-        storageRef.delete { error in
-            if error != nil {
-                HelpFunctions.displayAlertmessage(message: "Error", controller: self)
-                return
+        displaySureMessage()
+    }
+    
+    func displaySureMessage(){
+        let alert = UIAlertController(title:"Are you sure?", message:"",preferredStyle:UIAlertControllerStyle.alert)
+        let no = UIAlertAction(title:"No",style:UIAlertActionStyle.default,handler:nil)
+        let yes = UIAlertAction(title:"Yes",style:UIAlertActionStyle.default,handler:{(alert: UIAlertAction!) in
+            HelpFunctions.showSpinner(status: "Removing your dog...")
+            Model.instance.deleteDog(dog: self.dog!){(error) in
+                if error != nil{
+                    HelpFunctions.hideSpinner()
+                    HelpFunctions.displayAlertmessage(message:"Error deleting the dog ",controller: self)
+                    return
+                }
+                else{
+                    self.performSegue(withIdentifier: "unwindToMyDogs", sender: self)
+                }
             }
-        }
-        dataBaseRef.removeValue()
-        navigationController?.popViewController(animated: true)
+        })
+        alert.addAction(yes)
+        alert.addAction(no)
+        self.present(alert,animated: true,completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,10 +80,14 @@ class ExpandViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "editMode"){
-            let editController:AddDogViewController = segue.destination as! AddDogViewController
+            let editController:ManageSingleDogViewController = segue.destination as! ManageSingleDogViewController
             editController.dog = dog
             editController.isEditMode = true
             editController.isUploaded = true
+        }
+        else if segue.identifier == "unwindToMyDogs"{
+            let dogsController:MyDogsViewController = segue.destination as! MyDogsViewController
+            dogsController.hideSpinner = true
         }
     }
 }

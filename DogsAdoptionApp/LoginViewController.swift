@@ -41,7 +41,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        HelpFunctions.showSpinner(status: "Logging in")
         let email = mail.text
         let password = pass.text
         
@@ -56,10 +55,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return;
         }
         
-        Auth.auth().signInAndRetrieveData(withEmail: email!, password: password!){ (user, error) in
-            if(error != nil){
-                HelpFunctions.displayAlertmessage(message: (error?.localizedDescription)!,controller: self)
-                return;
+        HelpFunctions.showSpinner(status: "Logging in")
+        Model.instance.login(email!, password!){(error) in
+            if error != nil{
+                HelpFunctions.hideSpinner()
+                HelpFunctions.displayAlertmessage(message: "Error loging in",controller: self)
             }
             else{
                 self.cleanfields()

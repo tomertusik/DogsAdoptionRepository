@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Firebase
 
-class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate {
+class ManageSingleDogViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var nameText: UITextField!
@@ -78,13 +77,11 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         // if user is in edit mode
         if isEditMode!{
             updateDataBase(name!,age!,city!,phone!)
-            performSegue(withIdentifier: "unwindToMydogs", sender: self)
         }
         // if user is in add mode
         else{
             HelpFunctions.showSpinner(status: "Few more seconds and your dog is ready for adoption...")
             saveIntoDatabase(name!,age!,city!,phone!)
-            navigationController?.popViewController(animated: true)
         }
     }
     
@@ -118,74 +115,42 @@ class AddDogViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     // save the data and image to firebase
     func saveIntoDatabase(_ name:String, _ age:String, _ city:String, _ phone:String){
-        let dataBaseRef = Database.database().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs").childByAutoId()
-        let imageID = NSUUID().uuidString
-        let storageRef = Storage.storage().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs Images").child(imageID)
-        
         var description = self.descriptionText.text
         if description!.isEmpty{
             description = ""
         }
-        
-        if let dogImageData = UIImagePNGRepresentation(self.image.image!){
-            storageRef.putData(dogImageData, metadata: nil, completion:
-                {(metadata,error) in
-                    if error != nil {
-                        HelpFunctions.displayAlertmessage(message: "Error saving image", controller: self)
-                        return
-                    }
-                    if let imageURL = metadata?.downloadURL()?.absoluteString{
-                        let key = dataBaseRef.key
-                        let dog = ["name":name, "age":age, "city":city, "phone":phone, "description":description,"imageURL":imageURL, "key":key,"imageID":imageID]
-                        dataBaseRef.setValue(dog)
-                    }
-            })
+        Model.instance.addDog(name, age, city, phone, description!, self.image.image!){(error) in
+            if error != nil{
+                HelpFunctions.hideSpinner()
+                HelpFunctions.displayAlertmessage(message:"Error creating a new dog ",controller: self)
+            }
+            else{
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     
     // update existing data and image
     func updateDataBase(_ name:String, _ age:String, _ city:String, _ phone:String){
+        if isPictureChanged{
+            HelpFunctions.showSpinner(status: "Few more seconds and your dog is ready for adoption...")
+        }
         let dogKey = self.dog?.key
         let imageID = self.dog?.imageID
-        let dataBaseRef = Database.database().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs").child(dogKey!)
+        let imageURL = self.dog?.imageURL
         var description = self.descriptionText.text
         if description!.isEmpty{
             description = ""
         }
-        if isPictureChanged{
-            HelpFunctions.showSpinner(status: "Few more seconds and your dog is ready for adoption...")
-            // change the imageURL and save new picture to storage
-            let storageRef = Storage.storage().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Dogs Images").child(imageID!)
-            // Delete the file
-            storageRef.delete { error in
-                if error != nil {
-                    HelpFunctions.displayAlertmessage(message: "Error", controller: self)
-                    return
-                }
+        let currImage = self.image.image!
+        let dog = Dog(name: name, age: age, city: city, imageURL: imageURL!, description: description!, phoneForContact: phone, key: dogKey!, imageID: imageID!)
+        Model.instance.updateDog(dog: dog, image: currImage, isPictureChanged: isPictureChanged){(error) in
+            if error != nil{
+                HelpFunctions.displayAlertmessage(message: "Error updating dog", controller: self)
             }
-            if let dogImageData = UIImagePNGRepresentation(self.image.image!){
-                storageRef.putData(dogImageData, metadata: nil, completion:
-                    {(metadata,error) in
-                        if error != nil {
-                            HelpFunctions.displayAlertmessage(message: "Error saving image", controller: self)
-                            return
-                        }
-                        if let imageURL = metadata?.downloadURL()?.absoluteString{
-                            self.updateData(name, age, city, phone, description!, imageURL, dogKey!, imageID!, dataBaseRef)
-                        }
-                })
+            else{
+                self.performSegue(withIdentifier: "unwindToMydogs", sender: self)
             }
         }
-        else{
-            let imageURL = self.dog?.imageURL
-            self.updateData(name, age, city, phone, description!, imageURL!, dogKey!, imageID!, dataBaseRef)
-        }
     }
-    
-    // update data in firebase
-    func updateData(_ name:String, _ age:String, _ city:String, _ phone:String, _ description:String, _ imageURL:String, _ dogKey:String, _ imageID:String, _ dataBaseRef:DatabaseReference){
-        let dog = ["name":name, "age":age, "city":city, "phone":phone, "description":description,"imageURL":imageURL, "key":dogKey,"imageID":imageID]
-        dataBaseRef.updateChildValues(dog as Any as! [AnyHashable : Any])
-    }
-    
 }
