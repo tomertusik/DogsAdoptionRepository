@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		382F8B6630FBFD16B6B09895 /* Pods_DogsAdoptionAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5775515FC281F700EF18207A /* Pods_DogsAdoptionAppUITests.framework */; };
 		7CED3EE425B4DE31566AB058 /* Pods_DogsAdoptionApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E87BEBBE9998C2D4811B54 /* Pods_DogsAdoptionApp.framework */; };
+		840E2B35200D27BC00DA8E63 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 840E2B34200D27BC00DA8E63 /* libsqlite3.0.tbd */; };
+		840E2B39200D282300DA8E63 /* bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 840E2B38200D282200DA8E63 /* bridge.m */; };
+		840E2B3B200D2CAA00DA8E63 /* LastUpdateTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840E2B3A200D2CAA00DA8E63 /* LastUpdateTable.swift */; };
 		840E39AA200130CD00CDE8E6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840E39A9200130CD00CDE8E6 /* Extensions.swift */; };
 		842338671FE5385A003B408F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842338661FE5385A003B408F /* AppDelegate.swift */; };
 		842338691FE5385A003B408F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842338681FE5385A003B408F /* HomeController.swift */; };
@@ -17,6 +20,7 @@
 		842338711FE5385A003B408F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8423386F1FE5385A003B408F /* LaunchScreen.storyboard */; };
 		8423387C1FE5385A003B408F /* DogsAdoptionAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423387B1FE5385A003B408F /* DogsAdoptionAppTests.swift */; };
 		842338871FE5385A003B408F /* DogsAdoptionAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842338861FE5385A003B408F /* DogsAdoptionAppUITests.swift */; };
+		849AF42D200A5B3F002F3936 /* ModelSql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AF42C200A5B3F002F3936 /* ModelSql.swift */; };
 		849F1C971FED3EB400319DEC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F1C961FED3EB400319DEC /* RegisterViewController.swift */; };
 		84B7B31A1FED8E0E002C0C4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B3191FED8E00002C0C4C /* GoogleService-Info.plist */; };
 		84B7B31C1FED952B002C0C4C /* HelpFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B31B1FED952B002C0C4C /* HelpFunctions.swift */; };
@@ -54,6 +58,11 @@
 		181106AED05385A5980B69D9 /* Pods-DogsAdoptionAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogsAdoptionAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogsAdoptionAppTests/Pods-DogsAdoptionAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5775515FC281F700EF18207A /* Pods_DogsAdoptionAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DogsAdoptionAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E57ED5CE425B2FFB637BFE /* Pods-DogsAdoptionApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogsAdoptionApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogsAdoptionApp/Pods-DogsAdoptionApp.debug.xcconfig"; sourceTree = "<group>"; };
+		840E2B34200D27BC00DA8E63 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		840E2B36200D282200DA8E63 /* DogsAdoptionApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DogsAdoptionApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		840E2B37200D282200DA8E63 /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
+		840E2B38200D282200DA8E63 /* bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bridge.m; sourceTree = "<group>"; };
+		840E2B3A200D2CAA00DA8E63 /* LastUpdateTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LastUpdateTable.swift; path = ../../../../Downloads/TestFb/TestFb/LastUpdateTable.swift; sourceTree = "<group>"; };
 		840E39A9200130CD00CDE8E6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		842338631FE5385A003B408F /* DogsAdoptionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogsAdoptionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		842338661FE5385A003B408F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +77,7 @@
 		842338821FE5385A003B408F /* DogsAdoptionAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DogsAdoptionAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		842338861FE5385A003B408F /* DogsAdoptionAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsAdoptionAppUITests.swift; sourceTree = "<group>"; };
 		842338881FE5385A003B408F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		849AF42C200A5B3F002F3936 /* ModelSql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSql.swift; sourceTree = "<group>"; };
 		849F1C961FED3EB400319DEC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		84B7B3191FED8E00002C0C4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84B7B31B1FED952B002C0C4C /* HelpFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFunctions.swift; sourceTree = "<group>"; };
@@ -90,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840E2B35200D27BC00DA8E63 /* libsqlite3.0.tbd in Frameworks */,
 				7CED3EE425B4DE31566AB058 /* Pods_DogsAdoptionApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +127,7 @@
 		0D943C92A7E382C6705D4446 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				840E2B34200D27BC00DA8E63 /* libsqlite3.0.tbd */,
 				97E87BEBBE9998C2D4811B54 /* Pods_DogsAdoptionApp.framework */,
 				F402646E866CE841D8FD7448 /* Pods_DogsAdoptionAppTests.framework */,
 				5775515FC281F700EF18207A /* Pods_DogsAdoptionAppUITests.framework */,
@@ -164,6 +176,9 @@
 				84B7B31D1FEE8456002C0C4C /* MyDogsViewController.swift */,
 				84B7B31F1FEEA6B8002C0C4C /* ManageSingleDogViewController.swift */,
 				840E39A9200130CD00CDE8E6 /* Extensions.swift */,
+				840E2B37200D282200DA8E63 /* bridge.h */,
+				840E2B38200D282200DA8E63 /* bridge.m */,
+				840E2B36200D282200DA8E63 /* DogsAdoptionApp-Bridging-Header.h */,
 			);
 			path = DogsAdoptionApp;
 			sourceTree = "<group>";
@@ -189,9 +204,11 @@
 		84FAC3E120091B5E00A7E524 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				840E2B3A200D2CAA00DA8E63 /* LastUpdateTable.swift */,
 				84FBFB7D1FE55269007E926B /* Dog.swift */,
 				84FAC3E220091BF400A7E524 /* FireBaseModel.swift */,
 				84FAC3E420091DCA00A7E524 /* Model.swift */,
+				849AF42C200A5B3F002F3936 /* ModelSql.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,6 +303,7 @@
 				TargetAttributes = {
 					842338621FE5385A003B408F = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					842338761FE5385A003B408F = {
@@ -513,9 +531,11 @@
 			files = (
 				84B7B31C1FED952B002C0C4C /* HelpFunctions.swift in Sources */,
 				84C0F4C51FED71CE00D89DF3 /* LoginViewController.swift in Sources */,
+				849AF42D200A5B3F002F3936 /* ModelSql.swift in Sources */,
 				842338691FE5385A003B408F /* HomeController.swift in Sources */,
 				84B7B3201FEEA6B8002C0C4C /* ManageSingleDogViewController.swift in Sources */,
 				84CE4ED51FE540FB00779721 /* DogCellTableViewCell.swift in Sources */,
+				840E2B39200D282300DA8E63 /* bridge.m in Sources */,
 				84FBFB7E1FE55269007E926B /* Dog.swift in Sources */,
 				84FAC3E520091DCA00A7E524 /* Model.swift in Sources */,
 				849F1C971FED3EB400319DEC /* RegisterViewController.swift in Sources */,
@@ -524,6 +544,7 @@
 				84FBFB801FE56931007E926B /* ExpandViewController.swift in Sources */,
 				840E39AA200130CD00CDE8E6 /* Extensions.swift in Sources */,
 				842338671FE5385A003B408F /* AppDelegate.swift in Sources */,
+				840E2B3B200D2CAA00DA8E63 /* LastUpdateTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +711,7 @@
 			baseConfigurationReference = 67E57ED5CE425B2FFB637BFE /* Pods-DogsAdoptionApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -698,6 +720,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomer.dogsapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DogsAdoptionApp/DogsAdoptionApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -708,6 +732,7 @@
 			baseConfigurationReference = B0B7FE1CEA13B257F06BB1F9 /* Pods-DogsAdoptionApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -716,6 +741,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomer.dogsapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DogsAdoptionApp/DogsAdoptionApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

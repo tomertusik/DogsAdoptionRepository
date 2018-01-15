@@ -12,7 +12,7 @@ import UIKit
 class Model{
     static let instance = Model()
     
-    //lazy private var modelSql:ModelSql? = ModelSql()
+    lazy private var modelSql:ModelSql? = ModelSql()
     lazy private var modelFirebase:FireBaseModel? = FireBaseModel()
     
     private init(){

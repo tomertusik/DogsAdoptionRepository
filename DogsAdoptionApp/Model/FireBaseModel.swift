@@ -147,16 +147,19 @@ class FireBaseModel{
     
     // get dog information from snapshot
     private func getDogInfo(dog:DataSnapshot)->Dog{
-        let dogObject = dog.value as? [String:String]
-        let name = dogObject?["name"]
-        let age = dogObject?["age"]
-        let city = dogObject?["city"]
-        let phone = dogObject?["phone"]
-        let description = dogObject?["description"]
-        let key = dogObject?["key"]
-        let imageID = dogObject?["imageID"]
-        let imageURL = dogObject?["imageURL"]
-        let dogInfo = Dog(name: name!, age: age!, city: city!, imageURL: imageURL!, description: description!, phoneForContact: phone!, key:key!,imageID:imageID!)
+//        let dogObject = dog.value as? [String:String]
+//        let name = dogObject?["name"]
+//        let age = dogObject?["age"]
+//        let city = dogObject?["city"]
+//        let phone = dogObject?["phone"]
+//        let description = dogObject?["description"]
+//        let key = dogObject?["key"]
+//        let imageID = dogObject?["imageID"]
+//        let imageURL = dogObject?["imageURL"]
+//        let dogInfo = Dog(name: name!, age: age!, city: city!, imageURL: imageURL!, description: description!, phoneForContact: phone!, key:key!,imageID:imageID!)
+        
+        let dogobject = dog.value as? Dictionary<String,Any>
+        let dogInfo = Dog(dogObject: dogobject!)
         return dogInfo
     }
 
