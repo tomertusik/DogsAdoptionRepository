@@ -9,7 +9,6 @@
 import Foundation
 import SQLite3
 
-
 class ModelSql{
     var database: OpaquePointer? = nil
     
@@ -23,6 +22,10 @@ class ModelSql{
                 print("Failed to open db file: \(path.absoluteString)")
                 return nil
             }
+            
+//            var errormsg: UnsafeMutablePointer<Int8>? = nil
+//            sqlite3_exec(database, "DROP TABLE " + Dog.DOGS_TABLE , nil, nil, &errormsg);
+            
         }
         if Dog.createTable(database: database) == false{
             return nil
@@ -69,7 +72,7 @@ class ModelSql{
             if (dog.lastUpdate == nil){
                 dog.lastUpdate = Date()
             }
-            sqlite3_bind_double(sqlite3_stmt, 4, dog.lastUpdate!.toFirebase());
+            sqlite3_bind_double(sqlite3_stmt, 9, dog.lastUpdate!.toFirebase());
             
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
                 print("new row added succefully")
@@ -79,7 +82,7 @@ class ModelSql{
     }
     
     
-    func getAllStudentsFromLocalDb(database:OpaquePointer?)->[Dog]{
+    func getAllDogsFromLocalDb()->[Dog]{
         var dogs = [Dog]()
         var sqlite3_stmt: OpaquePointer? = nil
         if (sqlite3_prepare_v2(database,"SELECT * from DOGS;",-1,&sqlite3_stmt,nil) == SQLITE_OK){
@@ -102,8 +105,23 @@ class ModelSql{
         sqlite3_finalize(sqlite3_stmt)
         return dogs
     }
+    
+    
+    func deleteDogFromLocalDb(dog:Dog){
+        var sqlite3_stmt: OpaquePointer? = nil
+        if (sqlite3_prepare_v2(database,"delete from " +
+            Dog.DOGS_TABLE + " where " +
+            Dog.DOG_KEY + " = ?;",-1,&sqlite3_stmt,nil) == SQLITE_OK){
+            
+            sqlite3_bind_text(sqlite3_stmt, 1, dog.key?.cString(using: .utf8),-1,nil);
+            
+            if(sqlite3_step(sqlite3_stmt) != SQLITE_DONE){
+                print ("failes executing deleteStudent")
+            }
+        }
+        sqlite3_finalize(sqlite3_stmt)
+    }
 }
-
 
 
 

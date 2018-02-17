@@ -37,7 +37,8 @@ class FireBaseModel{
                 {(metadata,error) in
                     if let imageURL = metadata?.downloadURL()?.absoluteString{
                         let key = dataBaseRef.key
-                        let dog = ["name":name, "age":age, "city":city, "phone":phone, "description":description,"imageURL":imageURL, "key":key,"imageID":imageID]
+                        let lastUpdate = ServerValue.timestamp()
+                        let dog = ["name":name, "age":age, "city":city, "phone":phone, "description":description,"imageURL":imageURL, "key":key,"imageID":imageID, "lastUpdate":lastUpdate] as [String : Any]
                         dataBaseRef.setValue(dog)
                     }
                     completionBlock(error)
@@ -121,7 +122,7 @@ class FireBaseModel{
     }
     
     // get all dogs
-    func getAllDogs(completionBlock:@escaping ([Dog]?)->Void){
+    func getAllDogs(_ lastUpdateDate:Date? ,completionBlock:@escaping ([Dog]?)->Void){
         let dataBaseRef = Database.database().reference()
         var dogsList = [Dog]()
         dataBaseRef.child("Users").observe(.value, with: {(snapshot) in
@@ -147,17 +148,6 @@ class FireBaseModel{
     
     // get dog information from snapshot
     private func getDogInfo(dog:DataSnapshot)->Dog{
-//        let dogObject = dog.value as? [String:String]
-//        let name = dogObject?["name"]
-//        let age = dogObject?["age"]
-//        let city = dogObject?["city"]
-//        let phone = dogObject?["phone"]
-//        let description = dogObject?["description"]
-//        let key = dogObject?["key"]
-//        let imageID = dogObject?["imageID"]
-//        let imageURL = dogObject?["imageURL"]
-//        let dogInfo = Dog(name: name!, age: age!, city: city!, imageURL: imageURL!, description: description!, phoneForContact: phone!, key:key!,imageID:imageID!)
-        
         let dogobject = dog.value as? Dictionary<String,Any>
         let dogInfo = Dog(dogObject: dogobject!)
         return dogInfo
@@ -169,18 +159,20 @@ class FireBaseModel{
         if let cachedImage = imageCache.object(forKey: urlString as AnyObject) as? UIImage{
             completionBlock(cachedImage)
         }
-        // otherwise make a new download for the image
-        let url = URL(string:urlString)
-        URLSession.shared.dataTask(with: url!, completionHandler: {(data,response,error) in
-            if error != nil{
-                completionBlock(nil)
-            }
-            DispatchQueue.main.async{
-                if let downloadedImage = UIImage(data:data!){
-                    self.imageCache.setObject(downloadedImage, forKey: urlString as AnyObject)
-                    completionBlock(downloadedImage)
+        else{
+            // otherwise make a new download for the image
+            let url = URL(string:urlString)
+            URLSession.shared.dataTask(with: url!, completionHandler: {(data,response,error) in
+                if error != nil{
+                    completionBlock(nil)
                 }
-            }
-        }).resume()
+                DispatchQueue.main.async{
+                    if let downloadedImage = UIImage(data:data!){
+                        self.imageCache.setObject(downloadedImage, forKey: urlString as AnyObject)
+                        completionBlock(downloadedImage)
+                    }
+                }
+            }).resume()
+        }
     }
 }

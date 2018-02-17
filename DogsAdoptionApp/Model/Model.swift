@@ -49,6 +49,7 @@ class Model{
     // delete a dog
     func deleteDog(dog:Dog, completionBlock:@escaping (Error?)->Void){
         modelFirebase?.deleteDog(dog: dog){ (error) in
+            self.modelSql?.deleteDogFromLocalDb(dog: dog)
             completionBlock(error)
         }
     }
@@ -62,8 +63,34 @@ class Model{
     
     // get all dogs
     func getAllDogs(completionBlock:@escaping ([Dog]?)->Void){
-        modelFirebase?.getAllDogs(completionBlock: { (dogs) in
-            completionBlock(dogs)
+        
+        // get last update date from SQL
+        let lastUpdateDate = LastUpdateTable.getLastUpdateDate(database: modelSql?.database, table: Dog.DOGS_TABLE)
+        
+        // get all updated records from firebase
+        modelFirebase?.getAllDogs(lastUpdateDate,completionBlock: { (dogs) in
+            //update the local db
+            var lastUpdate:Date?
+            for dog in dogs!{
+                self.modelSql?.addDogToLocalDb(dog: dog)
+                if lastUpdate == nil{
+                    lastUpdate = dog.lastUpdate
+                }else{
+                    if lastUpdate!.compare(dog.lastUpdate!) == ComparisonResult.orderedAscending{
+                        lastUpdate = dog.lastUpdate
+                    }
+                }
+            }
+            //upadte the last update table
+            if (lastUpdate != nil){
+                LastUpdateTable.setLastUpdate(database: self.modelSql!.database, table: Dog.DOGS_TABLE, lastUpdate: lastUpdate!)
+            }
+            
+            //get the complete list from local DB
+            let totalList = self.modelSql?.getAllDogsFromLocalDb()
+            
+            //return the list to the caller
+            completionBlock(totalList)
         })
     }
     

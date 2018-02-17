@@ -25,17 +25,6 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationItem.setHidesBackButton(true, animated: false)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Dogs", style: .done, target: self, action: #selector(tapMyDogsButton))
-        
-        Model.instance.getAllDogs(completionBlock: { (dogs) in
-            if dogs != nil{
-                self.dogs.removeAll()
-                self.dogs = dogs!
-                self.dogsTableView.reloadData()
-            }
-            else{
-                HelpFunctions.displayAlertmessage(message: "There are no dogs to display\nPress the + button to add", controller: self)
-            }
-        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +39,16 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
         else{
             self.navigationItem.leftBarButtonItem = nil
         }
+        Model.instance.getAllDogs(completionBlock: { (dogs) in
+            if dogs != nil{
+                self.dogs.removeAll()
+                self.dogs = dogs!
+                self.dogsTableView.reloadData()
+            }
+            else{
+                HelpFunctions.displayAlertmessage(message: "There are no dogs to display\nPress the + button to add", controller: self)
+            }
+        })
     }
     
     @objc func logout(){
