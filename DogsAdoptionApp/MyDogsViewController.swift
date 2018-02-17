@@ -25,16 +25,16 @@ class MyDogsViewController: UIViewController, UITableViewDataSource, UITableView
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "All Dogs", style: .done, target: self, action: #selector(self.backToHome))
         
-        Model.instance.getMyDogs(completionBlock: { (dogs) in
-            if dogs != nil{
-                self.dogs.removeAll()
-                self.dogs = dogs!
+        ModelNotification.MyDogsList.observe { (list) in
+            if (list != nil && !(list?.isEmpty)!){
+                self.dogs = list!
                 self.dogsTableView.reloadData()
             }
             else{
                 HelpFunctions.displayAlertmessage(message: "There are no dogs to display\nPress the + button to add", controller: self)
             }
-        })
+        }
+        Model.instance.getMyDogs()
     }
     
     override func viewDidAppear(_ animated: Bool) {

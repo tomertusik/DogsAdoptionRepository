@@ -55,14 +55,21 @@ class Model{
     }
     
     // get "My Dogs"
-    func getMyDogs(completionBlock:@escaping ([Dog]?)->Void){
+    func getMyDogs(){
         modelFirebase?.getMyDogs(completionBlock: { (dogs) in
-            completionBlock(dogs)
+            // post notification
+            if(dogs != nil && !(dogs?.isEmpty)!){
+                ModelNotification.MyDogsList.post(data: dogs!)
+            }
+            else{
+                let dogsList : Array<Dog> = Array()
+                ModelNotification.MyDogsList.post(data:dogsList)
+            }
         })
     }
     
     // get all dogs
-    func getAllDogs(completionBlock:@escaping ([Dog]?)->Void){
+    func getAllDogs(){
         
         // get last update date from SQL
         let lastUpdateDate = LastUpdateTable.getLastUpdateDate(database: modelSql?.database, table: Dog.DOGS_TABLE)
@@ -89,8 +96,14 @@ class Model{
             //get the complete list from local DB
             let totalList = self.modelSql?.getAllDogsFromLocalDb()
             
-            //return the list to the caller
-            completionBlock(totalList)
+            // post notification
+            if(totalList != nil && !(totalList?.isEmpty)!){
+                ModelNotification.AllDogsList.post(data: totalList!)
+            }
+            else{
+                let dogsList : Array<Dog> = Array()
+                ModelNotification.AllDogsList.post(data:dogsList)
+            }
         })
     }
     
@@ -99,5 +112,37 @@ class Model{
         modelFirebase?.getImage(urlString: urlString, completionBlock: { (image) in
             completionBlock(image)
         })
+    }
+}
+
+
+// Notifications base
+class ModelNotificationBase<T>{
+    var name:String?
+    
+    init(name:String){
+        self.name = name
+    }
+    
+    func observe(callback:@escaping (T?)->Void)->Any{
+        return NotificationCenter.default.addObserver(forName: NSNotification.Name(name!), object: nil, queue: nil) { (data) in
+            if let data = data.userInfo?["data"] as? T {
+                callback(data)
+            }
+        }
+    }
+    
+    func post(data:T){
+        NotificationCenter.default.post(name: NSNotification.Name(name!), object: self, userInfo: ["data":data])
+    }
+}
+
+// Notifications model
+class ModelNotification{
+    static let AllDogsList = ModelNotificationBase<[Dog]>(name: "AllDogsListNotifications")
+    static let MyDogsList = ModelNotificationBase<[Dog]>(name: "MyDogsListNotifications")
+    
+    static func removeObserver(observer:Any){
+        NotificationCenter.default.removeObserver(observer)
     }
 }

@@ -39,16 +39,16 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
         else{
             self.navigationItem.leftBarButtonItem = nil
         }
-        Model.instance.getAllDogs(completionBlock: { (dogs) in
-            if dogs != nil{
-                self.dogs.removeAll()
-                self.dogs = dogs!
+        ModelNotification.AllDogsList.observe { (list) in
+            if (list != nil && !(list?.isEmpty)!){
+                self.dogs = list!
                 self.dogsTableView.reloadData()
             }
             else{
-                HelpFunctions.displayAlertmessage(message: "There are no dogs to display\nPress the + button to add", controller: self)
+                HelpFunctions.displayAlertmessage(message: "There are no dogs to display\nEnter My Dogs to add dogs", controller: self)
             }
-        })
+        }
+        Model.instance.getAllDogs()
     }
     
     @objc func logout(){
